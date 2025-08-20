@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Sidebar from "@/components/layout/Sidebar";
 
 const interFont = localFont({
   variable: "--font-inter-sans",
