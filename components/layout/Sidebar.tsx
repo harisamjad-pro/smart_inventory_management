@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   TbBox,
+  TbBrandStocktwits,
   TbBug,
   TbLogout,
   TbReorder,
@@ -26,26 +27,34 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-gray-50 border-r border-r-gray-200">
-      <ul className="flex flex-col gap-0 px-3 py-6">
-        {sidebarLinks.map(({ href, label, icon: Icon }) => {
-          const isActive = pathname === href;
-          return (
-            <li key={href}>
-              <Link
-                href={href}
-                className={`flex items-center gap-2 text-base px-3 py-2.5 bg-transparent hover:bg-[#06B90014] rounded-xl min-w-56 ${
-                  isActive
-                    ? "font-medium text-[#06B900]"
-                    : "font-normal text-gray-600"
-                }`}
-              >
-                <Icon className="size-5" />
-                {label}
-              </Link>
-            </li>
-          );
-        })}
+    <aside className="bg-white border-r border-r-gray-200">
+      <ul className="flex flex-col gap-0 px-3 py-4">
+        <li className="flex flex-col items-start gap-8">
+          {/* bg-gray-200 w-full */}
+          <Link href="/" className="text-[#98CD00] mx-1.5 w-fit">
+            <TbBrandStocktwits className="size-8" />
+          </Link>
+          <ul>
+            {sidebarLinks.map(({ href, label, icon: Icon }) => {
+              const isActive = pathname === href;
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    // min-w-56
+                    className={`flex items-center gap-2 text-sm px-3 ${label ? "py-2.5" : "py-3"} rounded-xl min-w-56 ${isActive
+                      ? "font-medium text-[#18230F] bg-[#B6F500]"
+                      : "font-normal text-gray-600 bg-transparent hover:bg-[#B8F50032]"
+                      }`}
+                  >
+                    <Icon className="size-5" />
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </li>
       </ul>
     </aside>
   );
