@@ -31,7 +31,7 @@ export default function Sidebar() {
       <ul className="flex flex-col gap-0 px-3 py-4">
         <li className="flex flex-col items-start gap-8">
           {/* bg-gray-200 w-full */}
-          <Link href="/" className="text-[#98CD00] mx-1.5 w-fit">
+          <Link href="/" className="text-[#83b300] mx-1.5 w-fit">
             <TbBrandStocktwits className="size-8" />
           </Link>
           <ul>
