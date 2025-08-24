@@ -31,7 +31,7 @@ export default function Sidebar() {
       <ul className="flex flex-col gap-0 px-3 py-4">
         <li className="flex flex-col items-start gap-8">
           {/* bg-gray-200 w-full */}
-          <Link href="/" className="text-[#83b300] mx-1.5 w-fit">
+          <Link href="/" className="text-[#83B200] mx-1.5 w-fit">
             <TbBrandStocktwits className="size-8" />
           </Link>
           <ul>
@@ -43,8 +43,8 @@ export default function Sidebar() {
                     href={href}
                     // min-w-56
                     className={`flex items-center gap-2 text-sm px-3 ${label ? "py-2.5" : "py-3"} rounded-xl min-w-56 ${isActive
-                      ? "font-medium text-[#18230F] bg-[#B6F500]"
-                      : "font-normal text-gray-600 bg-transparent hover:bg-[#B8F50032]"
+                      ? "font-medium text-black bg-[#B6F500]"
+                      : "font-normal text-gray-500 bg-transparent hover:bg-[#B6F500]/20 hover:text-black"
                       }`}
                   >
                     <Icon className="size-5" />
