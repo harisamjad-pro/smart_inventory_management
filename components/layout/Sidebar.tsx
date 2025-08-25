@@ -10,6 +10,7 @@ import {
   TbReorder,
   TbReportAnalytics,
   TbSmartHome,
+  TbTransactionDollar,
   TbUser,
 } from "react-icons/tb";
 
@@ -19,7 +20,8 @@ const sidebarLinks = [
   { href: "/reorder", label: "Reorder", icon: TbReorder },
   { href: "/reports", label: "Reports", icon: TbReportAnalytics },
   { href: "/anomalies", label: "Anomalies", icon: TbBug },
-  { href: "/users", label: "Users", icon: TbUser },
+  { href: "/staff", label: "Staff", icon: TbUser },
+  { href: "/transactions", label: "Transactions", icon: TbTransactionDollar },
   { href: "/logout", label: "Logout", icon: TbLogout },
 ];
 
@@ -27,11 +29,11 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-white border-r border-r-gray-200">
+    <aside className="border-r border-r-black/15">
       <ul className="flex flex-col gap-0 px-3 py-4">
         <li className="flex flex-col items-start gap-8">
           {/* bg-gray-200 w-full */}
-          <Link href="/" className="text-[#83B200] mx-1.5 w-fit">
+          <Link href="/" className="text-[#0046FF] mx-1.5 w-fit">
             <TbBrandStocktwits className="size-8" />
           </Link>
           <ul>
@@ -43,8 +45,8 @@ export default function Sidebar() {
                     href={href}
                     // min-w-56
                     className={`flex items-center gap-2 text-sm px-3 ${label ? "py-2.5" : "py-3"} rounded-xl min-w-56 ${isActive
-                      ? "font-medium text-black bg-[#B6F500]"
-                      : "font-normal text-gray-500 bg-transparent hover:bg-[#B6F500]/20 hover:text-black"
+                      ? "font-medium text-white bg-[#0046FF]"
+                      : "font-normal text-gray-500 bg-transparent hover:bg-[#0046FF]/10 hover:text-[#0046FF]"
                       }`}
                   >
                     <Icon className="size-5" />
