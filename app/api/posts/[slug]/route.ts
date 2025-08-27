@@ -8,20 +8,20 @@ import { slugify } from "@/lib/slugify";
 //   return NextResponse.json(data);
 // }
 
-export async function PUT(req: Request, { params }: { params: { slug: string } }) {
-  const { title, content } = await req.json();
-  const newSlug = slugify(title);
+// export async function PUT(req: Request, { params }: { params: { slug: string } }) {
+//   const { title, content } = await req.json();
+//   const newSlug = slugify(title);
 
-  const { data, error } = await supabaseAdmin
-    .from("posts")
-    .update({ title, content, slug: newSlug })
-    .eq("slug", params.slug)
-    .select()
-    .single();
+//   const { data, error } = await supabaseAdmin
+//     .from("posts")
+//     .update({ title, content, slug: newSlug })
+//     .eq("slug", params.slug)
+//     .select()
+//     .single();
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json(data);
-}
+//   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+//   return NextResponse.json(data);
+// }
 
 export async function DELETE(req: Request, { params }: { params: { slug: string } }) {
   const { error } = await supabaseAdmin.from("posts").delete().eq("slug", params.slug);
