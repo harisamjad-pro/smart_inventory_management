@@ -2,20 +2,22 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 import { slugify } from "@/lib/slugify";
 
-export async function GET(_: Request, { params }: { params: { slug: string } }) {
-  const { data, error } = await supabaseAdmin.from("posts").select("*").eq("slug", params.slug).single();
+export async function GET(req: Request, context: { params: { slug: string } }) {
+  const { slug } = context.params;
+  const { data, error } = await supabaseAdmin.from("posts").select("*").eq("slug", slug).single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data);
 }
 
-export async function PUT(req: Request, { params }: { params: { slug: string } }) {
+export async function PUT(req: Request, context: { params: { slug: string } }) {
+  const { slug } = context.params;
   const { title, content } = await req.json();
   const newSlug = slugify(title);
 
   const { data, error } = await supabaseAdmin
     .from("posts")
     .update({ title, content, slug: newSlug })
-    .eq("slug", params.slug)
+    .eq("slug", slug)
     .select()
     .single();
 
@@ -23,8 +25,9 @@ export async function PUT(req: Request, { params }: { params: { slug: string } }
   return NextResponse.json(data);
 }
 
-export async function DELETE(_: Request, { params }: { params: { slug: string } }) {
-  const { error } = await supabaseAdmin.from("posts").delete().eq("slug", params.slug);
+export async function DELETE(req: Request, context: { params: { slug: string } }) {
+  const { slug } = context.params;
+  const { error } = await supabaseAdmin.from("posts").delete().eq("slug", slug);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ message: "Deleted" });
 }
