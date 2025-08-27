@@ -2,7 +2,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 import { slugify } from "@/lib/slugify";
 
-// GET one post by slug
+// GET one post by slug h
 export async function GET(
   request: Request,
   context: { params: { slug: string } }
