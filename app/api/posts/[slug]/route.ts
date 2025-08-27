@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const slug = request.nextUrl.pathname.split("/").pop();
   const { data, error } = await supabaseAdmin
     .from("posts")
-    .select("*")
+    .select()
     .eq("slug", slug)
     .single();
 
