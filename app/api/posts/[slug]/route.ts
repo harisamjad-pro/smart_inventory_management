@@ -1,7 +1,5 @@
 import { supabaseAdmin } from "@/lib/supabase";
 import { NextResponse } from "next/server";
-
-// 👇 Correct type import
 import type { NextRequest } from "next/server";
 
 type Params = {
