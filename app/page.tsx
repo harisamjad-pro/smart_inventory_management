@@ -1,8 +1,8 @@
 import Header from "@/components/layout/Header";
 import Sidebar from "../components/layout/Sidebar";
-import Footer from "@/components/layout/Footer";
+// import Footer from "@/components/layout/Footer";
 import Link from "next/link";
-import { TbArrowUpRight, TbCurrencyDollar, TbMinus, TbPlus, TbSum } from "react-icons/tb";
+import { TbArrowUpRight, TbPlus, } from "react-icons/tb";
 import { BsStars } from "react-icons/bs";
 
 export default function Home() {
