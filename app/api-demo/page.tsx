@@ -41,7 +41,7 @@ export default function ApiDemoPage() {
         <button className="bg-blue-600 text-white px-4 py-2 rounded">Add</button>
       </form>
 
-      <Suspense fallback={<div className="text-black">Loading...</div>}>
+      <Suspense fallback={<div className="text-red-500">Loading...</div>}>
         <ul className="space-y-3">
           {posts.map((p) => (
             <li key={p.id} className="border rounded p-3">
