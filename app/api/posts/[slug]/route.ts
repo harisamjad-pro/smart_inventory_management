@@ -1,13 +1,16 @@
 import { supabaseAdmin } from "@/lib/supabase";
 import { NextResponse } from "next/server";
-import { slugify } from "@/lib/slugify";
 
-// GET one post by slug h
-export async function GET(
-  request: Request,
-  context: { params: { slug: string } }
-) {
-  const { slug } = context.params;
+// 👇 Correct type import
+import type { NextRequest } from "next/server";
+
+type Params = {
+  params: { slug: string };
+};
+
+// GET one post by slug
+export async function GET(req: NextRequest, { params }: Params) {
+  const { slug } = params;
 
   const { data, error } = await supabaseAdmin
     .from("posts")
@@ -19,14 +22,10 @@ export async function GET(
   return NextResponse.json(data);
 }
 
-// UPDATE post
-export async function PUT(
-  request: Request,
-  context: { params: { slug: string } }
-) {
-  const { slug } = context.params;
-  const { title, content } = await request.json();
-  const newSlug = slugify(title);
+export async function PUT(req: NextRequest, { params }: Params) {
+  const { slug } = params;
+  const { title, content } = await req.json();
+  const newSlug = title.toLowerCase().replace(/\s+/g, "-");
 
   const { data, error } = await supabaseAdmin
     .from("posts")
@@ -39,12 +38,8 @@ export async function PUT(
   return NextResponse.json(data);
 }
 
-// DELETE post
-export async function DELETE(
-  request: Request,
-  context: { params: { slug: string } }
-) {
-  const { slug } = context.params;
+export async function DELETE(req: NextRequest, { params }: Params) {
+  const { slug } = params;
 
   const { error } = await supabaseAdmin.from("posts").delete().eq("slug", slug);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
