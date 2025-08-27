@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function ApiDemoPage() {
   type Post = { id: string; slug: string; title: string; content: string };
@@ -41,15 +41,17 @@ export default function ApiDemoPage() {
         <button className="bg-blue-600 text-white px-4 py-2 rounded">Add</button>
       </form>
 
-      <ul className="space-y-3">
-        {posts.map((p) => (
-          <li key={p.id} className="border rounded p-3">
-            <h2 className="font-semibold">{p.title}</h2>
-            <p>{p.content}</p>
-            <button onClick={() => handleDelete(p.slug)} className="text-red-600 mt-2">Delete</button>
-          </li>
-        ))}
-      </ul>
+      <Suspense fallback={<div className="text-black">Loading...</div>}>
+        <ul className="space-y-3">
+          {posts.map((p) => (
+            <li key={p.id} className="border rounded p-3">
+              <h2 className="font-semibold">{p.title}</h2>
+              <p>{p.content}</p>
+              <button onClick={() => handleDelete(p.slug)} className="text-red-600 mt-2">Delete</button>
+            </li>
+          ))}
+        </ul>
+      </Suspense>
     </main>
   );
 }
