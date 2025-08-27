@@ -44,7 +44,7 @@ export default function Sidebar() {
                   <Link
                     href={href}
                     // min-w-56
-                    className={`flex items-center gap-2 text-sm px-3 ${label ? "py-2.5" : "py-3"} rounded-xl min-w-56 ${isActive
+                    className={`flex items-center gap-2 text-base px-3 ${label ? "py-2.5" : "py-3"} rounded-xl min-w-56 ${isActive
                       ? "font-medium text-white bg-[#0046FF]"
                       : "font-normal text-gray-500 bg-transparent hover:bg-[#0046FF]/10 hover:text-[#0046FF]"
                       }`}
