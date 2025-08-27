@@ -1,17 +1,31 @@
 import { supabaseAdmin } from "@/lib/supabase";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { slugify } from "@/lib/slugify";
 
-export async function GET(req: NextRequest, context: { params: { slug: string } }) {
+// GET one post by slug
+export async function GET(
+  request: Request,
+  context: { params: { slug: string } }
+) {
   const { slug } = context.params;
-  const { data, error } = await supabaseAdmin.from("posts").select("*").eq("slug", slug).single();
+
+  const { data, error } = await supabaseAdmin
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data);
 }
 
-export async function PUT(req: NextRequest, context: { params: { slug: string } }) {
+// UPDATE post
+export async function PUT(
+  request: Request,
+  context: { params: { slug: string } }
+) {
   const { slug } = context.params;
-  const { title, content } = await req.json();
+  const { title, content } = await request.json();
   const newSlug = slugify(title);
 
   const { data, error } = await supabaseAdmin
@@ -25,9 +39,15 @@ export async function PUT(req: NextRequest, context: { params: { slug: string } 
   return NextResponse.json(data);
 }
 
-export async function DELETE(req: NextRequest, context: { params: { slug: string } }) {
+// DELETE post
+export async function DELETE(
+  request: Request,
+  context: { params: { slug: string } }
+) {
   const { slug } = context.params;
+
   const { error } = await supabaseAdmin.from("posts").delete().eq("slug", slug);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
   return NextResponse.json({ message: "Deleted" });
 }
